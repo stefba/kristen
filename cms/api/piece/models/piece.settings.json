@@ -1,4 +1,6 @@
 {
+  "connection": "default",
+  "collectionName": "pieces",
   "info": {
     "name": "piece"
   },
@@ -14,12 +16,11 @@
       "required": false
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
       "type": "text"
     }
-  },
-  "connection": "default",
-  "collectionName": "pieces"
+  }
 }

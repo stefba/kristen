@@ -1,9 +1,11 @@
+// Adapted this from here: https://steampixel.de/einfache-thumbnails-fur-dein-nachstes-strapi-projekt/
+
 import React from 'react';
 import Helmet from 'react-helmet'
 import Strapi from 'strapi-sdk-javascript/build/main';
 import './App.css';
 
-const strapi = new Strapi('http://localhost:1337');
+const strapi = new Strapi('/strapi/');
 
 class App extends React.Component {
     constructor(props) {
@@ -51,11 +53,16 @@ function Pieces(props) {
     );
 }
 
+function thumb(url, size) {
+    const dir = "/uploads"
+    return "/files/sizes/" + size + url.substr(dir.length)
+}
+
 function Piece(props) {
     return (
         <div>
         {props.piece.images.map( image => (
-            <img key={image.id} alt={props.piece.title} src={image.url} />
+            <img key={image.id} alt={props.piece.title} src={thumb(image.url, "thumb")} />
         ))}
         </div>
     );
