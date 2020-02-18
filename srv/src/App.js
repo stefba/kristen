@@ -1,4 +1,3 @@
-// Adapted this from here: https://steampixel.de/einfache-thumbnails-fur-dein-nachstes-strapi-projekt/
 
 import React from 'react';
 import Helmet from 'react-helmet'

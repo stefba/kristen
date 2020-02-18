@@ -1,3 +1,5 @@
+// Adapted this from here: https://steampixel.de/einfache-thumbnails-fur-dein-nachstes-strapi-projekt/
+
 
 // Import some required dependencys
 const path = require('path');
