@@ -1,3 +1,6 @@
+body {
+    margin:.5rem 1rem;
+}
 
 h1 {
     font-weight:normal;
@@ -5,5 +8,41 @@ h1 {
 }
 
 img {
-    max-width:50%;
+    max-width:100%;
+}
+
+#title {
+    margin:2rem 0 3rem;
+}
+
+#pieces {
+    display:flex;
+    flex-shrink: 0;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    max-width:60rem;
+}
+
+#posts {
+    margin:4rem 0;
+}
+
+.post {
+    max-width:38rem;
+    font-size:1.5rem;
+    text-align:justify;
+    font-family: "EB Garamond", serif;
+}
+
+.preview {
+    max-height:24rem;
+    max-width:100%;
+    margin-right:2rem;
+    margin-bottom:1rem;
+}
+
+figure {
+    display:inline;
+    margin:0;
+    text-align:center;
 }

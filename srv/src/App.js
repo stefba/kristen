@@ -2,23 +2,31 @@
 import React from 'react';
 import Helmet from 'react-helmet'
 import Strapi from 'strapi-sdk-javascript/build/main';
+import ReactMarkdown from "react-markdown";
+
+
 import './App.css';
 
-const strapi = new Strapi('/strapi/');
+const strapi = new Strapi('/api/');
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Pieces: []
+            Pieces: [],
+            Posts: []
         }
     }
 
 
     async componentDidMount() {
         try {
-            const pieces = await strapi.getEntries('pieces')
-            this.setState({ Pieces: pieces });
+            const pieces = await strapi.getEntries('pieces', { "archived_ne": "true", "_sort": "id:DESC" })
+            const posts = await strapi.getEntries('posts', {  "_sort": "id:DESC" })
+            this.setState({
+                Pieces: pieces,
+                Posts: posts
+            });
         } 
         catch(err) {
             alert(err);
@@ -29,14 +37,11 @@ class App extends React.Component {
         return (
             <div>
                 <Helmet>
-                    <title>Kristen Mounsey</title>
+                    <title>Kristen Mounsey Ceramics</title>
                 </Helmet>
-                <div className="App">
-                    <header className="App-header">
-                        <h1>Kristen Mounsey Ceramics</h1>
-                    </header>
-                </div>
+                <h1 id="title">Kristen Mounsey Ceramics</h1>
                 <Pieces pieces={this.state.Pieces} />
+                <Posts posts={this.state.Posts} />
             </div>
         );
     }
@@ -44,11 +49,21 @@ class App extends React.Component {
 
 function Pieces(props) {
     return (
-        <div>
+        <div id="pieces">
         {props.pieces.map( piece => (
             <Piece key={piece.id} piece={piece} />
         ))}
         </div>
+    );
+}
+
+function Piece(props) {
+    return (
+        <figure>
+        {props.piece.images.map( image => (
+            <img className="preview" key={image.id} alt={props.piece.title} src={thumb(image.url, "medium")} />
+        ))}
+        </figure>
     );
 }
 
@@ -57,14 +72,27 @@ function thumb(url, size) {
     return "/files/sizes/" + size + url.substr(dir.length)
 }
 
-function Piece(props) {
+function Posts(props) {
     return (
-        <div>
-        {props.piece.images.map( image => (
-            <img key={image.id} alt={props.piece.title} src={thumb(image.url, "thumb")} />
+        <div id="posts">
+        {props.posts.map( post => (
+            <Post key={post.id} post={post} />
         ))}
         </div>
     );
 }
 
+function Post(props) {
+    return (
+        <article>
+            <h2>{props.post.title}</h2>
+            <div className="post">
+                <ReactMarkdown source={props.post.text} />
+            </div>
+            {props.post.images.map( image => (
+                <img className="preview" key={image.id}  src={thumb(image.url, "medium")} />
+            ))}
+        </article>
+    );
+}
 export default App;

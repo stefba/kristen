@@ -21,6 +21,10 @@
     },
     "description": {
       "type": "text"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
