@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "connection": "default",
+  "collectionName": "site_informations",
+  "info": {
+    "name": "Site Information"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "string",
+      "required": false
+    },
+    "About": {
+      "type": "richtext"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "clay_bodies",
+  "info": {
+    "name": "Body"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}

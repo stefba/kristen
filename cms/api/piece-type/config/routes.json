@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/piece-types",
+      "handler": "piece-type.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/piece-types/count",
+      "handler": "piece-type.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/piece-types/:id",
+      "handler": "piece-type.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/piece-types",
+      "handler": "piece-type.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/piece-types/:id",
+      "handler": "piece-type.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/piece-types/:id",
+      "handler": "piece-type.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "connection": "default",
+  "collectionName": "components_meta_metas",
+  "info": {
+    "name": "Meta",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "Width": {
+      "type": "decimal"
+    },
+    "Height": {
+      "type": "decimal"
+    },
+    "Type": {
+      "model": "piece-type"
+    },
+    "ClayBody": {
+      "model": "clay-body"
+    },
+    "Glace": {
+      "model": "glace"
+    },
+    "Firing": {
+      "model": "firing"
+    },
+    "Process": {
+      "type": "string"
+    },
+    "Length": {
+      "type": "decimal"
+    }
+  }
+}

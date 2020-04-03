@@ -4,9 +4,6 @@
  * Lifecycle callbacks for the `post` model.
  */
 
-const ImageHelper = require('../../image/helpers/ImageHelper');
-const fs = require('fs');
-
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
@@ -55,20 +52,4 @@ module.exports = {
   // After destroying a value.
   // Fired after a `delete` query.
   // afterDestroy: async (model, attrs, options) => {}
-  afterSave: async (model, attrs, options) => {
-     strapi.query("post").findOne({id: model.id})
-      .then(function(piece) {
-          piece.images.map( image => (
-              ImageHelper.generateSizes(image.url)
-          ));
-      });
-  },
-  afterUpdate: async (model, attrs, options) => {
-     strapi.query("post").findOne({id: model.id})
-      .then(function(piece) {
-          piece.images.map( image => (
-              ImageHelper.generateSizes(image.url)
-          ));
-      });
-  }
 };

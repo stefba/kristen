@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "pieces",
+  "info": {
+    "name": "piece"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "archived": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

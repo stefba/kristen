@@ -15,7 +15,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        //path: `${__dirname}/src/images`,
+        path: `${__dirname}/../cms/public/uploads`,
       },
     },
       {
@@ -24,8 +25,12 @@ module.exports = {
               apiURL: "http://localhost:1337",
               contentTypes: [
                   // List of the Content Types you want to be able to request from Gatsby.
-                  "piece",
                   "post",
+                  "piece",
+              ],
+              singleTypes: [
+                  "site-information",
+                  "contact",
               ],
               queryLimit: 1000,
           },

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "piece_types",
+  "info": {
+    "name": "Type"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "private": false,
+      "required": true,
+      "unique": true
+    }
+  }
+}

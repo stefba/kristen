@@ -1,9 +1,132 @@
+type ClayBody {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+}
+
+type ClayBodyAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type ClayBodyConnection {
+  values: [ClayBody]
+  groupBy: ClayBodyGroupBy
+  aggregate: ClayBodyAggregator
+}
+
+type ClayBodyConnectionCreated_at {
+  key: DateTime
+  connection: ClayBodyConnection
+}
+
+type ClayBodyConnectionId {
+  key: ID
+  connection: ClayBodyConnection
+}
+
+type ClayBodyConnectionName {
+  key: String
+  connection: ClayBodyConnection
+}
+
+type ClayBodyConnectionUpdated_at {
+  key: DateTime
+  connection: ClayBodyConnection
+}
+
+type ClayBodyGroupBy {
+  id: [ClayBodyConnectionId]
+  created_at: [ClayBodyConnectionCreated_at]
+  updated_at: [ClayBodyConnectionUpdated_at]
+  Name: [ClayBodyConnectionName]
+}
+
+input ClayBodyInput {
+  Name: String
+}
+
+type ComponentMetaMeta {
+  id: ID!
+  Width: Float
+  Height: Float
+  Type: PieceType
+  ClayBody: ClayBody
+  Glace: Glace
+  Firing: Firing
+  Process: String
+  Length: Float
+}
+
+input ComponentMetaMetaInput {
+  Width: Float
+  Height: Float
+  Type: ID
+  ClayBody: ID
+  Glace: ID
+  Firing: ID
+  Process: String
+  Length: Float
+}
+
+type Contact {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+}
+
+input ContactInput {
+  Name: String
+}
+
+input createClayBodyInput {
+  data: ClayBodyInput
+}
+
+type createClayBodyPayload {
+  clayBody: ClayBody
+}
+
+input createFileInput {
+  data: FileInput
+}
+
+type createFilePayload {
+  file: UploadFile
+}
+
+input createFiringInput {
+  data: FiringInput
+}
+
+type createFiringPayload {
+  firing: Firing
+}
+
+input createGlaceInput {
+  data: GlaceInput
+}
+
+type createGlacePayload {
+  glace: Glace
+}
+
 input createPieceInput {
   data: PieceInput
 }
 
 type createPiecePayload {
   piece: Piece
+}
+
+input createPieceTypeInput {
+  data: PieceTypeInput
+}
+
+type createPieceTypePayload {
+  pieceType: PieceType
 }
 
 input createPostInput {
@@ -44,12 +167,56 @@ A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the
 """
 scalar DateTime
 
+input deleteClayBodyInput {
+  where: InputID
+}
+
+type deleteClayBodyPayload {
+  clayBody: ClayBody
+}
+
+type deleteContactPayload {
+  contact: Contact
+}
+
+input deleteFileInput {
+  where: InputID
+}
+
+type deleteFilePayload {
+  file: UploadFile
+}
+
+input deleteFiringInput {
+  where: InputID
+}
+
+type deleteFiringPayload {
+  firing: Firing
+}
+
+input deleteGlaceInput {
+  where: InputID
+}
+
+type deleteGlacePayload {
+  glace: Glace
+}
+
 input deletePieceInput {
   where: InputID
 }
 
 type deletePiecePayload {
   piece: Piece
+}
+
+input deletePieceTypeInput {
+  where: InputID
+}
+
+type deletePieceTypePayload {
+  pieceType: PieceType
 }
 
 input deletePostInput {
@@ -68,12 +235,36 @@ type deleteRolePayload {
   role: UsersPermissionsRole
 }
 
+type deleteSiteInformationPayload {
+  siteInformation: SiteInformation
+}
+
 input deleteUserInput {
   where: InputID
 }
 
 type deleteUserPayload {
   user: UsersPermissionsUser
+}
+
+input editClayBodyInput {
+  Name: String
+}
+
+input editComponentMetaMetaInput {
+  id: ID
+  Width: Float
+  Height: Float
+  Type: ID
+  ClayBody: ID
+  Glace: ID
+  Firing: ID
+  Process: String
+  Length: Float
+}
+
+input editContactInput {
+  Name: String
 }
 
 input editFileInput {
@@ -89,18 +280,30 @@ input editFileInput {
   related: [ID]
 }
 
+input editFiringInput {
+  Name: String
+}
+
+input editGlaceInput {
+  Name: String
+}
+
 input editPieceInput {
-  images: [ID]
-  title: String
-  description: String
-  archived: Boolean
+  Title: String
+  Date: DateTime
+  Images: [ID]
+  Meta: editComponentMetaMetaInput
+}
+
+input editPieceTypeInput {
+  Name: String
 }
 
 input editPostInput {
-  title: String
-  text: String
-  date: Date
-  images: [ID]
+  Title: String
+  Date: Date
+  Images: [ID]
+  Text: String
 }
 
 input editRoleInput {
@@ -109,6 +312,12 @@ input editRoleInput {
   type: String
   permissions: [ID]
   users: [ID]
+}
+
+input editSiteInformationInput {
+  Title: String
+  Description: String
+  About: String
 }
 
 input editUserInput {
@@ -135,6 +344,108 @@ input FileInput {
   related: [ID]
 }
 
+type Firing {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+}
+
+type FiringAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type FiringConnection {
+  values: [Firing]
+  groupBy: FiringGroupBy
+  aggregate: FiringAggregator
+}
+
+type FiringConnectionCreated_at {
+  key: DateTime
+  connection: FiringConnection
+}
+
+type FiringConnectionId {
+  key: ID
+  connection: FiringConnection
+}
+
+type FiringConnectionName {
+  key: String
+  connection: FiringConnection
+}
+
+type FiringConnectionUpdated_at {
+  key: DateTime
+  connection: FiringConnection
+}
+
+type FiringGroupBy {
+  id: [FiringConnectionId]
+  created_at: [FiringConnectionCreated_at]
+  updated_at: [FiringConnectionUpdated_at]
+  Name: [FiringConnectionName]
+}
+
+input FiringInput {
+  Name: String
+}
+
+type ForgotPassword {
+  ok: Boolean
+}
+
+type Glace {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Name: String
+}
+
+type GlaceAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type GlaceConnection {
+  values: [Glace]
+  groupBy: GlaceGroupBy
+  aggregate: GlaceAggregator
+}
+
+type GlaceConnectionCreated_at {
+  key: DateTime
+  connection: GlaceConnection
+}
+
+type GlaceConnectionId {
+  key: ID
+  connection: GlaceConnection
+}
+
+type GlaceConnectionName {
+  key: String
+  connection: GlaceConnection
+}
+
+type GlaceConnectionUpdated_at {
+  key: DateTime
+  connection: GlaceConnection
+}
+
+type GlaceGroupBy {
+  id: [GlaceConnectionId]
+  created_at: [GlaceConnectionCreated_at]
+  updated_at: [GlaceConnectionUpdated_at]
+  Name: [GlaceConnectionName]
+}
+
+input GlaceInput {
+  Name: String
+}
+
 input InputID {
   id: ID!
 }
@@ -147,15 +458,31 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | Piece | createPiecePayload | updatePiecePayload | deletePiecePayload | Post | createPostPayload | updatePostPayload | deletePostPayload | UploadFile | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | ForgotPassword | ClayBody | ClayBodyConnection | ClayBodyAggregator | ClayBodyGroupBy | ClayBodyConnectionId | ClayBodyConnectionCreated_at | ClayBodyConnectionUpdated_at | ClayBodyConnectionName | createClayBodyPayload | updateClayBodyPayload | deleteClayBodyPayload | Contact | updateContactPayload | deleteContactPayload | Firing | FiringConnection | FiringAggregator | FiringGroupBy | FiringConnectionId | FiringConnectionCreated_at | FiringConnectionUpdated_at | FiringConnectionName | createFiringPayload | updateFiringPayload | deleteFiringPayload | Glace | GlaceConnection | GlaceAggregator | GlaceGroupBy | GlaceConnectionId | GlaceConnectionCreated_at | GlaceConnectionUpdated_at | GlaceConnectionName | createGlacePayload | updateGlacePayload | deleteGlacePayload | PieceType | PieceTypeConnection | PieceTypeAggregator | PieceTypeGroupBy | PieceTypeConnectionId | PieceTypeConnectionCreated_at | PieceTypeConnectionUpdated_at | PieceTypeConnectionName | createPieceTypePayload | updatePieceTypePayload | deletePieceTypePayload | Piece | PieceConnection | PieceAggregator | PieceGroupBy | PieceConnectionId | PieceConnectionCreated_at | PieceConnectionUpdated_at | PieceConnectionTitle | PieceConnectionDate | PieceConnectionMeta | createPiecePayload | updatePiecePayload | deletePiecePayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionDate | PostConnectionText | createPostPayload | updatePostPayload | deletePostPayload | SiteInformation | updateSiteInformationPayload | deleteSiteInformationPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | createFilePayload | updateFilePayload | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentMetaMeta
 
 type Mutation {
+  createClayBody(input: createClayBodyInput): createClayBodyPayload
+  updateClayBody(input: updateClayBodyInput): updateClayBodyPayload
+  deleteClayBody(input: deleteClayBodyInput): deleteClayBodyPayload
+  updateContact(input: updateContactInput): updateContactPayload
+  deleteContact: deleteContactPayload
+  createFiring(input: createFiringInput): createFiringPayload
+  updateFiring(input: updateFiringInput): updateFiringPayload
+  deleteFiring(input: deleteFiringInput): deleteFiringPayload
+  createGlace(input: createGlaceInput): createGlacePayload
+  updateGlace(input: updateGlaceInput): updateGlacePayload
+  deleteGlace(input: deleteGlaceInput): deleteGlacePayload
+  createPieceType(input: createPieceTypeInput): createPieceTypePayload
+  updatePieceType(input: updatePieceTypeInput): updatePieceTypePayload
+  deletePieceType(input: deletePieceTypeInput): deletePieceTypePayload
   createPiece(input: createPieceInput): createPiecePayload
   updatePiece(input: updatePieceInput): updatePiecePayload
   deletePiece(input: deletePieceInput): deletePiecePayload
   createPost(input: createPostInput): createPostPayload
   updatePost(input: updatePostInput): updatePostPayload
   deletePost(input: deletePostInput): deletePostPayload
+  updateSiteInformation(input: updateSiteInformationInput): updateSiteInformationPayload
+  deleteSiteInformation: deleteSiteInformationPayload
 
   """Create a new role"""
   createRole(input: createRoleInput): createRolePayload
@@ -178,56 +505,227 @@ type Mutation {
   multipleUpload(refId: ID, ref: String, field: String, source: String, files: [Upload]!): [UploadFile]!
   login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
   register(input: UserInput!): UsersPermissionsLoginPayload!
+  forgotPassword(email: String!): ForgotPassword
+  changePassword(password: String!, passwordConfirmation: String!, code: String!): UsersPermissionsLoginPayload
+  emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 }
 
 type Piece {
-  title: String!
-  description: String
-  archived: Boolean
-  images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
   id: ID!
   created_at: DateTime!
   updated_at: DateTime!
+  Title: String!
+  Date: DateTime!
+  Meta: ComponentMetaMeta
+  Images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type PieceAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PieceConnection {
+  values: [Piece]
+  groupBy: PieceGroupBy
+  aggregate: PieceAggregator
+}
+
+type PieceConnectionCreated_at {
+  key: DateTime
+  connection: PieceConnection
+}
+
+type PieceConnectionDate {
+  key: DateTime
+  connection: PieceConnection
+}
+
+type PieceConnectionId {
+  key: ID
+  connection: PieceConnection
+}
+
+type PieceConnectionMeta {
+  key: ID
+  connection: PieceConnection
+}
+
+type PieceConnectionTitle {
+  key: String
+  connection: PieceConnection
+}
+
+type PieceConnectionUpdated_at {
+  key: DateTime
+  connection: PieceConnection
+}
+
+type PieceGroupBy {
+  id: [PieceConnectionId]
+  created_at: [PieceConnectionCreated_at]
+  updated_at: [PieceConnectionUpdated_at]
+  Title: [PieceConnectionTitle]
+  Date: [PieceConnectionDate]
+  Meta: [PieceConnectionMeta]
 }
 
 input PieceInput {
-  images: [ID]
-  title: String!
-  description: String
-  archived: Boolean
+  Title: String!
+  Date: DateTime!
+  Images: [ID]
+  Meta: ComponentMetaMetaInput!
 }
 
-type Post {
-  title: String!
-  text: String
-  date: Date
-  images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+type PieceType {
   id: ID!
   created_at: DateTime!
   updated_at: DateTime!
+  Name: String!
+}
+
+type PieceTypeAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PieceTypeConnection {
+  values: [PieceType]
+  groupBy: PieceTypeGroupBy
+  aggregate: PieceTypeAggregator
+}
+
+type PieceTypeConnectionCreated_at {
+  key: DateTime
+  connection: PieceTypeConnection
+}
+
+type PieceTypeConnectionId {
+  key: ID
+  connection: PieceTypeConnection
+}
+
+type PieceTypeConnectionName {
+  key: String
+  connection: PieceTypeConnection
+}
+
+type PieceTypeConnectionUpdated_at {
+  key: DateTime
+  connection: PieceTypeConnection
+}
+
+type PieceTypeGroupBy {
+  id: [PieceTypeConnectionId]
+  created_at: [PieceTypeConnectionCreated_at]
+  updated_at: [PieceTypeConnectionUpdated_at]
+  Name: [PieceTypeConnectionName]
+}
+
+input PieceTypeInput {
+  Name: String!
+}
+
+type Post {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String!
+  Date: Date!
+  Text: String
+  Images(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+}
+
+type PostAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type PostConnection {
+  values: [Post]
+  groupBy: PostGroupBy
+  aggregate: PostAggregator
+}
+
+type PostConnectionCreated_at {
+  key: DateTime
+  connection: PostConnection
+}
+
+type PostConnectionDate {
+  key: ID
+  connection: PostConnection
+}
+
+type PostConnectionId {
+  key: ID
+  connection: PostConnection
+}
+
+type PostConnectionText {
+  key: String
+  connection: PostConnection
+}
+
+type PostConnectionTitle {
+  key: String
+  connection: PostConnection
+}
+
+type PostConnectionUpdated_at {
+  key: DateTime
+  connection: PostConnection
+}
+
+type PostGroupBy {
+  id: [PostConnectionId]
+  created_at: [PostConnectionCreated_at]
+  updated_at: [PostConnectionUpdated_at]
+  Title: [PostConnectionTitle]
+  Date: [PostConnectionDate]
+  Text: [PostConnectionText]
 }
 
 input PostInput {
-  title: String!
-  text: String
-  date: Date
-  images: [ID]
+  Title: String!
+  Date: Date!
+  Images: [ID]
+  Text: String
 }
 
 type Query {
+  clayBody(id: ID!): ClayBody
+  clayBodies(sort: String, limit: Int, start: Int, where: JSON): [ClayBody]
+  clayBodiesConnection(sort: String, limit: Int, start: Int, where: JSON): ClayBodyConnection
+  contact: Contact
+  firing(id: ID!): Firing
+  firings(sort: String, limit: Int, start: Int, where: JSON): [Firing]
+  firingsConnection(sort: String, limit: Int, start: Int, where: JSON): FiringConnection
+  glace(id: ID!): Glace
+  glaces(sort: String, limit: Int, start: Int, where: JSON): [Glace]
+  glacesConnection(sort: String, limit: Int, start: Int, where: JSON): GlaceConnection
+  pieceType(id: ID!): PieceType
+  pieceTypes(sort: String, limit: Int, start: Int, where: JSON): [PieceType]
+  pieceTypesConnection(sort: String, limit: Int, start: Int, where: JSON): PieceTypeConnection
   piece(id: ID!): Piece
   pieces(sort: String, limit: Int, start: Int, where: JSON): [Piece]
+  piecesConnection(sort: String, limit: Int, start: Int, where: JSON): PieceConnection
   post(id: ID!): Post
   posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
+  postsConnection(sort: String, limit: Int, start: Int, where: JSON): PostConnection
+  siteInformation: SiteInformation
   files(sort: String, limit: Int, start: Int, where: JSON): [UploadFile]
+  filesConnection(sort: String, limit: Int, start: Int, where: JSON): UploadFileConnection
   role(id: ID!): UsersPermissionsRole
 
   """
   Retrieve all the existing roles. You can't apply filters on this query.
   """
   roles(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsRole]
+  rolesConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsRoleConnection
   user(id: ID!): UsersPermissionsUser
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
+  usersConnection(sort: String, limit: Int, start: Int, where: JSON): UsersPermissionsUserConnection
   me: UsersPermissionsMe
 }
 
@@ -239,8 +737,67 @@ input RoleInput {
   users: [ID]
 }
 
+type SiteInformation {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
+  Title: String
+  Description: String
+  About: String
+}
+
+input SiteInformationInput {
+  Title: String
+  Description: String
+  About: String
+}
+
 """A time string with format: HH:mm:ss.SSS"""
 scalar Time
+
+input updateClayBodyInput {
+  where: InputID
+  data: editClayBodyInput
+}
+
+type updateClayBodyPayload {
+  clayBody: ClayBody
+}
+
+input updateContactInput {
+  data: editContactInput
+}
+
+type updateContactPayload {
+  contact: Contact
+}
+
+input updateFileInput {
+  where: InputID
+  data: editFileInput
+}
+
+type updateFilePayload {
+  file: UploadFile
+}
+
+input updateFiringInput {
+  where: InputID
+  data: editFiringInput
+}
+
+type updateFiringPayload {
+  firing: Firing
+}
+
+input updateGlaceInput {
+  where: InputID
+  data: editGlaceInput
+}
+
+type updateGlacePayload {
+  glace: Glace
+}
 
 input updatePieceInput {
   where: InputID
@@ -249,6 +806,15 @@ input updatePieceInput {
 
 type updatePiecePayload {
   piece: Piece
+}
+
+input updatePieceTypeInput {
+  where: InputID
+  data: editPieceTypeInput
+}
+
+type updatePieceTypePayload {
+  pieceType: PieceType
 }
 
 input updatePostInput {
@@ -269,6 +835,14 @@ type updateRolePayload {
   role: UsersPermissionsRole
 }
 
+input updateSiteInformationInput {
+  data: editSiteInformationInput
+}
+
+type updateSiteInformationPayload {
+  siteInformation: SiteInformation
+}
+
 input updateUserInput {
   where: InputID
   data: editUserInput
@@ -282,6 +856,9 @@ type updateUserPayload {
 scalar Upload
 
 type UploadFile {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
   name: String!
   hash: String!
   sha256: String
@@ -292,9 +869,92 @@ type UploadFile {
   provider: String!
   provider_metadata: JSON
   related(sort: String, limit: Int, start: Int, where: JSON): [Morph]
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+}
+
+type UploadFileAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UploadFileConnection {
+  values: [UploadFile]
+  groupBy: UploadFileGroupBy
+  aggregate: UploadFileAggregator
+}
+
+type UploadFileConnectionCreated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionExt {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionHash {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionId {
+  key: ID
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionMime {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionName {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionProvider_metadata {
+  key: JSON
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSha256 {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionSize {
+  key: Float
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUpdated_at {
+  key: DateTime
+  connection: UploadFileConnection
+}
+
+type UploadFileConnectionUrl {
+  key: String
+  connection: UploadFileConnection
+}
+
+type UploadFileGroupBy {
+  id: [UploadFileConnectionId]
+  created_at: [UploadFileConnectionCreated_at]
+  updated_at: [UploadFileConnectionUpdated_at]
+  name: [UploadFileConnectionName]
+  hash: [UploadFileConnectionHash]
+  sha256: [UploadFileConnectionSha256]
+  ext: [UploadFileConnectionExt]
+  mime: [UploadFileConnectionMime]
+  size: [UploadFileConnectionSize]
+  url: [UploadFileConnectionUrl]
+  provider: [UploadFileConnectionProvider]
+  provider_metadata: [UploadFileConnectionProvider_metadata]
 }
 
 input UserInput {
@@ -336,32 +996,138 @@ type UsersPermissionsMeRole {
 }
 
 type UsersPermissionsPermission {
+  id: ID!
   type: String!
   controller: String!
   action: String!
   enabled: Boolean!
   policy: String
   role: UsersPermissionsRole
-  id: ID!
 }
 
 type UsersPermissionsRole {
+  id: ID!
   name: String!
   description: String
   type: String
   permissions(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsPermission]
   users(sort: String, limit: Int, start: Int, where: JSON): [UsersPermissionsUser]
-  id: ID!
+}
+
+type UsersPermissionsRoleAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsRoleConnection {
+  values: [UsersPermissionsRole]
+  groupBy: UsersPermissionsRoleGroupBy
+  aggregate: UsersPermissionsRoleAggregator
+}
+
+type UsersPermissionsRoleConnectionDescription {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionId {
+  key: ID
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionName {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleConnectionType {
+  key: String
+  connection: UsersPermissionsRoleConnection
+}
+
+type UsersPermissionsRoleGroupBy {
+  id: [UsersPermissionsRoleConnectionId]
+  name: [UsersPermissionsRoleConnectionName]
+  description: [UsersPermissionsRoleConnectionDescription]
+  type: [UsersPermissionsRoleConnectionType]
 }
 
 type UsersPermissionsUser {
+  id: ID!
+  created_at: DateTime!
+  updated_at: DateTime!
   username: String!
   email: String!
   provider: String
   confirmed: Boolean
   blocked: Boolean
   role: UsersPermissionsRole
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
+}
+
+type UsersPermissionsUserAggregator {
+  count: Int
+  totalCount: Int
+}
+
+type UsersPermissionsUserConnection {
+  values: [UsersPermissionsUser]
+  groupBy: UsersPermissionsUserGroupBy
+  aggregate: UsersPermissionsUserAggregator
+}
+
+type UsersPermissionsUserConnectionBlocked {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionConfirmed {
+  key: Boolean
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionCreated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionEmail {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionId {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionProvider {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionRole {
+  key: ID
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUpdated_at {
+  key: DateTime
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserConnectionUsername {
+  key: String
+  connection: UsersPermissionsUserConnection
+}
+
+type UsersPermissionsUserGroupBy {
+  id: [UsersPermissionsUserConnectionId]
+  created_at: [UsersPermissionsUserConnectionCreated_at]
+  updated_at: [UsersPermissionsUserConnectionUpdated_at]
+  username: [UsersPermissionsUserConnectionUsername]
+  email: [UsersPermissionsUserConnectionEmail]
+  provider: [UsersPermissionsUserConnectionProvider]
+  confirmed: [UsersPermissionsUserConnectionConfirmed]
+  blocked: [UsersPermissionsUserConnectionBlocked]
+  role: [UsersPermissionsUserConnectionRole]
 }

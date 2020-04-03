@@ -1,0 +1,12 @@
+body {
+    font-family:sans-serif;
+}
+
+img {
+    max-width:100%;
+}
+
+.piece-image,
+.post-image {
+    max-height:20rem;
+}

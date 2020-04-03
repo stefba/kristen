@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/clay-bodies",
+      "handler": "clay-body.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clay-bodies/count",
+      "handler": "clay-body.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/clay-bodies/:id",
+      "handler": "clay-body.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/clay-bodies",
+      "handler": "clay-body.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/clay-bodies/:id",
+      "handler": "clay-body.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/clay-bodies/:id",
+      "handler": "clay-body.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
