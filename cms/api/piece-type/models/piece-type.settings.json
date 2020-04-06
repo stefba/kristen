@@ -3,7 +3,7 @@
   "connection": "default",
   "collectionName": "piece_types",
   "info": {
-    "name": "Type"
+    "name": "Piece Types"
   },
   "options": {
     "increments": true,
@@ -14,7 +14,7 @@
       "type": "string",
       "private": false,
       "required": true,
-      "unique": true
+      "unique": false
     }
   }
 }

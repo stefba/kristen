@@ -3,7 +3,7 @@
   "connection": "default",
   "collectionName": "clay_bodies",
   "info": {
-    "name": "Body"
+    "name": "Clay Body"
   },
   "options": {
     "increments": true,
