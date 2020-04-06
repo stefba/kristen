@@ -44,12 +44,13 @@ module.exports = {
     renameImage: source => {
         return new Promise(async (resolve, reject) => {
             const ext = _.last(source.split("."));
-            if (ext != "JPG") {
+            console.log("was called");
+            if (ext != "JPG" && ext.toLowerCase() != "jpeg") {
                 resolve(source);
                 return;
             }
 
-            const target = lowerCaseFile(source)
+            const target = lowerCaseFile(source).replace(".jpeg", ".jpg")
 
             await rename(source, target);
             strapi.log.info("RENAMED:\n" + st.name(source) + " ->\n" + st.name(target));

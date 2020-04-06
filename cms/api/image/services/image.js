@@ -14,7 +14,8 @@ const rm = require("./remove");
 module.exports = {
     process: async id => {
         const f = await strapi.query("file", "upload").findOne({id: id});
-        if (st.ext(f.url).toLowerCase() != "jpg") {
+        const ext = st.ext(f.url).toLowerCase();
+        if (ext != "jpg" && ext != "jpeg") {
             return;
         }
 

@@ -44,7 +44,8 @@ const cleanDisk = async () => {
         strapi.log.info("Checking DISK for orphaned files.")
         const files = await st.getFiles(st.folder);
         for (const f of files) {
-            if (st.ext(f).toLowerCase() != "jpg") {
+            const ext = st.ext(f).toLowerCase()
+            if (ext != "jpg" && ext != "jpeg") {
                 continue
             }
             const img = await strapi.query("file", "upload").findOne({hash: st.hash(f)})
@@ -64,7 +65,8 @@ const cleanStrapi = async () => {
         strapi.log.info("Checking STRAPI for orphaned files.")
         const images = await strapi.query("file", "upload").find()
         for (const img of images) {
-            if (st.ext(img.url).toLowerCase() != "jpg") {
+            const ext = st.ext(img.url).toLowerCase();
+            if (ext != "jpg" && ext != "jpeg") {
                 continue
             }
             if (img.related.length == 0) {
