@@ -1,0 +1,14 @@
+{
+  "connection": "default",
+  "collectionName": "components_selection_highlights",
+  "info": {
+    "name": "highlight",
+    "icon": "air-freshener"
+  },
+  "options": {},
+  "attributes": {
+    "piece": {
+      "model": "piece"
+    }
+  }
+}

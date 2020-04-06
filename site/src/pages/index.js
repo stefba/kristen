@@ -1,46 +1,67 @@
 import React from "react"
-import { StaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 //import Posts from "../components/post"
 import Pieces from "../components/piece"
 
-const IndexPage = () => (  
+const IndexPage = ({data}) => (  
  <Layout>
-    <StaticQuery
-      query={graphql`
+    <div>
+    {console.log(data)}
+    <Pieces pieces={data.allStrapiPiece.edges} />
+    {/*<Posts posts={data.allStrapiPost.edges} />*/}
+    </div>
+  </Layout>
+)
+
+
+export const query = graphql`
         query Posts {
-          allStrapiPost {
-            edges {
-              node {
-                Title
-                Text
-                Images {
-                    url
-                }
-              }
-            }
-          }
           allStrapiPiece {
             edges {
               node {
-                Title
-                Images {
+                title
+                date
+                images {
                     url
+                }
+                info {
+                  piece_type {
+                    name
+                  }
+                  glaze {
+                    name
+                  }
+                  firing {
+                    name
+                  }
+                  clay_body {
+                    name
+                  }
+                  process
+                  width
+                  height
+                  length
                 }
               }
             }
           }
         }
-      `}
-      render={data => (
-        <div>
-            <Pieces pieces={data.allStrapiPiece.edges} />
-          {/*<Posts posts={data.allStrapiPost.edges} />*/}
-        </div>
-      )}
-    />
-  </Layout>
-)
+`
 
 export default IndexPage  
+
+/*
+          allStrapiPost {
+            edges {
+              node {
+                title
+                text
+                images {
+                    url
+                }
+              }
+            }
+          }
+        */

@@ -6,13 +6,13 @@ const Top = () => (
       query={graphql`
         query {
           strapiSiteInformation {
-              Title
+              title
           }
         }
      `}
       render={data => (
   <h1>
-    <Link to="/">{data.strapiSiteInformation.Title}</Link>
+    <Link to="/">{data.strapiSiteInformation.title}</Link>
   </h1>
       )}
     />

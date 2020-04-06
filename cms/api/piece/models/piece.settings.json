@@ -3,31 +3,31 @@
   "connection": "default",
   "collectionName": "pieces",
   "info": {
-    "name": "Piece"
+    "name": "piece"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "Date": {
+    "date": {
       "type": "datetime",
       "required": true
     },
-    "Images": {
+    "images": {
       "collection": "file",
       "via": "related",
       "plugin": "upload",
-      "required": false
+      "required": true
     },
-    "Meta": {
+    "info": {
       "type": "component",
       "repeatable": false,
-      "component": "meta.meta",
+      "component": "piece.info",
       "required": true
     }
   }

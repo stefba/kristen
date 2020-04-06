@@ -3,29 +3,24 @@
   "connection": "default",
   "collectionName": "posts",
   "info": {
-    "name": "Post"
+    "name": "post"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string",
       "required": true
     },
-    "Date": {
+    "date": {
       "type": "date",
       "required": true
     },
-    "Images": {
-      "collection": "file",
-      "via": "related",
-      "plugin": "upload",
-      "required": false
-    },
-    "Text": {
-      "type": "richtext"
+    "text": {
+      "type": "richtext",
+      "required": true
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "connection": "default",
+  "collectionName": "selections",
+  "info": {
+    "name": "selection"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "highlight": {
+      "type": "component",
+      "repeatable": true,
+      "component": "selection.highlight"
+    }
+  }
+}

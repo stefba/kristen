@@ -1,0 +1,36 @@
+{
+  "connection": "default",
+  "collectionName": "components_piece_infos",
+  "info": {
+    "name": "info",
+    "icon": "address-card"
+  },
+  "options": {},
+  "attributes": {
+    "piece_type": {
+      "model": "piece-type"
+    },
+    "clay_body": {
+      "model": "clay-body"
+    },
+    "glaze": {
+      "model": "glaze"
+    },
+    "firing": {
+      "model": "firing"
+    },
+    "process": {
+      "type": "string"
+    },
+    "width": {
+      "type": "decimal",
+      "required": false
+    },
+    "height": {
+      "type": "decimal"
+    },
+    "length": {
+      "type": "decimal"
+    }
+  }
+}

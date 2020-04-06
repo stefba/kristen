@@ -6,7 +6,7 @@ const Bot = () => (
       query={graphql`
         query {
           strapiSiteInformation {
-              About
+              about
           }
         }
      `}

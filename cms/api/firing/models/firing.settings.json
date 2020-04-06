@@ -3,15 +3,17 @@
   "connection": "default",
   "collectionName": "firings",
   "info": {
-    "name": "Firing"
+    "name": "firing"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Name": {
-      "type": "string"
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }

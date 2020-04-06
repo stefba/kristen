@@ -3,18 +3,17 @@
   "connection": "default",
   "collectionName": "piece_types",
   "info": {
-    "name": "Piece Types"
+    "name": "piece type"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
-      "private": false,
       "required": true,
-      "unique": false
+      "unique": true
     }
   }
 }

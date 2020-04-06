@@ -5,9 +5,9 @@ require("dotenv").config({
 
 module.exports = {
   siteMetadata: {
-    title: `Kristen Mounsey`,
+    title: `Kristen Mounsey Ceramics`,
     description: `Website of Kristen Mounsey.`,
-    author: `stef barsch`,
+    author: `Kristen Mousney`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,12 +25,11 @@ module.exports = {
               apiURL: "http://localhost:1337",
               contentTypes: [
                   // List of the Content Types you want to be able to request from Gatsby.
-                  "post",
+               //   "post",
                   "piece",
               ],
               singleTypes: [
                   "site-information",
-                  "contact",
               ],
               queryLimit: 1000,
           },

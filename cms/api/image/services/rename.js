@@ -45,7 +45,7 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             const ext = _.last(source.split("."));
             if (ext != "JPG") {
-                resolve();
+                resolve(source);
                 return;
             }
 

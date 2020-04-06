@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 const thumb = (url, size) => {
     const dir = "/uploads"
-    return "/files/sizes/" + size + url.substr(dir.length)
+    return "/files/cache/" + size + url.substr(dir.length)
 }
 
 const dir = (url) => {
@@ -30,7 +30,7 @@ const Post = ({ post }) => {
         <ReactMarkdown source={post.Text} />
         </div>
         {post.Images.map( image => (
-            <img className="post-image" key={image.id}  src={dir(image.url)} />
+            <img className="post-image" key={image.id}  src={thumb(image.url)} />
         ))}
         </article>
     );

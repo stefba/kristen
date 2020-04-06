@@ -9,12 +9,12 @@ import Seo from "./seo"
 
 const Layout = ({ children }) => {  
   return (
-    <>
+    <div>
       <Seo />
       <Top />
       <main>{children}</main>
       <Bot />
-    </>
+    </div>
   )
 }
 

@@ -3,21 +3,20 @@
   "connection": "default",
   "collectionName": "site_informations",
   "info": {
-    "name": "Site Information"
+    "name": "Site information"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
-    "Description": {
-      "type": "string",
-      "required": false
+    "description": {
+      "type": "string"
     },
-    "About": {
+    "about": {
       "type": "richtext"
     }
   }

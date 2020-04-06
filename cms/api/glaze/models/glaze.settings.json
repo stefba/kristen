@@ -3,19 +3,19 @@
   "connection": "default",
   "collectionName": "glazes",
   "info": {
-    "name": "Glaze"
+    "name": "glaze"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "Name": {
+    "name": {
       "type": "string",
-      "private": false,
-      "required": true
+      "required": true,
+      "unique": true
     },
-    "Hide": {
+    "hide": {
       "type": "boolean",
       "default": false,
       "required": true
