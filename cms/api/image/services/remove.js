@@ -94,23 +94,14 @@ const removeFile = path => {
     })
 }
 
-const cleanUp = async () => {
-    await cleanStrapi();
-    await cleanDisk();
-    await cleanCache();
-    strapi.log.info("Cleaned UP!")
-}
 
 module.exports = {
-    cleanUp: cleanUp,
+    cleanUp: async () => {
+        await cleanStrapi();
+        await cleanDisk();
+        await cleanCache();
+        strapi.log.info("Cleaned UP!")
+    }
 }
-
-/*
-const main = async () => {
-    removeUnusedFiles();
-}
-
-main();
-*/
 
 
