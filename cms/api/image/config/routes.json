@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/makesizes",
+      "handler": "image.makeSizes",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

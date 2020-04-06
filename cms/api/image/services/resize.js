@@ -46,37 +46,38 @@ const checkFolders = () => {
     })
 }
 
-const resizeImages = async () => {
-    await checkFolders();
-    const files = await st.getFiles(st.folder);
-    for (const file of files) {
-        if (st.ext(file) == "jpg") {
-            await generateSizes(file);
+const resizeImage = path => {
+    return new Promise(async (resolve, reject) => {
+        for (const size of st.sizes) {
+            if (!fs.existsSync(st.sizePath(path, size))) {
+                await resize(path, size);
+                continue
+            }
+            const source = fs.statSync(path)
+            const target = fs.statSync(st.sizePath(path, size))
+            if (new Date(source.mtime) > new Date(target.mtime)) {
+                strapi.log.info("New source file.")
+                await resize(path, size);
+                continue
+            }
+            // console.log("Checked: " + st.name(path) + " (" + size + ")")
         }
-    }
-    return;
+        resolve();
+    });
 }
 
 module.exports = {
-    resizeImage: path => {
-        return new Promise(async (resolve, reject) => {
-            for (const size of st.sizes) {
-                if (!fs.existsSync(st.sizePath(path, size))) {
-                    await resize(path, size);
-                    continue
-                }
-                const source = fs.statSync(path)
-                const target = fs.statSync(st.sizePath(path, size))
-                if (new Date(source.mtime) > new Date(target.mtime)) {
-                    strapi.log.info("New source file.")
-                    await resize(path, size);
-                    continue
-                }
-                // console.log("Checked: " + st.name(path) + " (" + size + ")")
+    resizeImages: async () => {
+        await checkFolders();
+        const files = await st.getFiles(st.folder);
+        for (const file of files) {
+            if (st.ext(file) == "jpg") {
+                await resizeImage(file);
             }
-            resolve();
-        });
-    }
+        }
+        return;
+    },
+    resizeImage: resizeImage,
 }
 
 /*
