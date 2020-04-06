@@ -12,6 +12,9 @@ module.exports = {
   // After saving a value.
   // Fired after an `insert` or `update` query.
   // afterSave: async (model, response, options) => {},
+  afterSave: async (model, attrs, options) => {
+        strapi.services.image.cleanUp();
+  },
 
   // Before fetching a value.
   // Fired before a `fetch` operation.
@@ -52,8 +55,4 @@ module.exports = {
   // After destroying a value.
   // Fired after a `delete` query.
   // afterDestroy: async (model, attrs, options) => {}
-  afterUpdate: async (model, attrs, options) => {
-      let piece = await strapi.query("post").findOne({id: model.id});
-      console.log(piece);
-  }
 };
