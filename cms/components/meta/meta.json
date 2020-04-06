@@ -19,9 +19,6 @@
     "ClayBody": {
       "model": "clay-body"
     },
-    "Glace": {
-      "model": "glace"
-    },
     "Firing": {
       "model": "firing"
     },
@@ -30,6 +27,9 @@
     },
     "Length": {
       "type": "decimal"
+    },
+    "glaze": {
+      "model": "glaze"
     }
   }
 }

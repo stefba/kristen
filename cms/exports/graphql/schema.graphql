@@ -53,10 +53,10 @@ type ComponentMetaMeta {
   Height: Float
   Type: PieceType
   ClayBody: ClayBody
-  Glace: Glace
   Firing: Firing
   Process: String
   Length: Float
+  glaze: Glaze
 }
 
 input ComponentMetaMetaInput {
@@ -64,21 +64,10 @@ input ComponentMetaMetaInput {
   Height: Float
   Type: ID
   ClayBody: ID
-  Glace: ID
   Firing: ID
   Process: String
   Length: Float
-}
-
-type Contact {
-  id: ID!
-  created_at: DateTime!
-  updated_at: DateTime!
-  Name: String
-}
-
-input ContactInput {
-  Name: String
+  glaze: ID
 }
 
 input createClayBodyInput {
@@ -105,12 +94,12 @@ type createFiringPayload {
   firing: Firing
 }
 
-input createGlaceInput {
-  data: GlaceInput
+input createGlazeInput {
+  data: GlazeInput
 }
 
-type createGlacePayload {
-  glace: Glace
+type createGlazePayload {
+  glaze: Glaze
 }
 
 input createPieceInput {
@@ -175,10 +164,6 @@ type deleteClayBodyPayload {
   clayBody: ClayBody
 }
 
-type deleteContactPayload {
-  contact: Contact
-}
-
 input deleteFileInput {
   where: InputID
 }
@@ -195,12 +180,12 @@ type deleteFiringPayload {
   firing: Firing
 }
 
-input deleteGlaceInput {
+input deleteGlazeInput {
   where: InputID
 }
 
-type deleteGlacePayload {
-  glace: Glace
+type deleteGlazePayload {
+  glaze: Glaze
 }
 
 input deletePieceInput {
@@ -257,14 +242,10 @@ input editComponentMetaMetaInput {
   Height: Float
   Type: ID
   ClayBody: ID
-  Glace: ID
   Firing: ID
   Process: String
   Length: Float
-}
-
-input editContactInput {
-  Name: String
+  glaze: ID
 }
 
 input editFileInput {
@@ -284,8 +265,9 @@ input editFiringInput {
   Name: String
 }
 
-input editGlaceInput {
+input editGlazeInput {
   Name: String
+  Hide: Boolean
 }
 
 input editPieceInput {
@@ -397,53 +379,61 @@ type ForgotPassword {
   ok: Boolean
 }
 
-type Glace {
+type Glaze {
   id: ID!
   created_at: DateTime!
   updated_at: DateTime!
-  Name: String
+  Name: String!
+  Hide: Boolean!
 }
 
-type GlaceAggregator {
+type GlazeAggregator {
   count: Int
   totalCount: Int
 }
 
-type GlaceConnection {
-  values: [Glace]
-  groupBy: GlaceGroupBy
-  aggregate: GlaceAggregator
+type GlazeConnection {
+  values: [Glaze]
+  groupBy: GlazeGroupBy
+  aggregate: GlazeAggregator
 }
 
-type GlaceConnectionCreated_at {
+type GlazeConnectionCreated_at {
   key: DateTime
-  connection: GlaceConnection
+  connection: GlazeConnection
 }
 
-type GlaceConnectionId {
+type GlazeConnectionHide {
+  key: Boolean
+  connection: GlazeConnection
+}
+
+type GlazeConnectionId {
   key: ID
-  connection: GlaceConnection
+  connection: GlazeConnection
 }
 
-type GlaceConnectionName {
+type GlazeConnectionName {
   key: String
-  connection: GlaceConnection
+  connection: GlazeConnection
 }
 
-type GlaceConnectionUpdated_at {
+type GlazeConnectionUpdated_at {
   key: DateTime
-  connection: GlaceConnection
+  connection: GlazeConnection
 }
 
-type GlaceGroupBy {
-  id: [GlaceConnectionId]
-  created_at: [GlaceConnectionCreated_at]
-  updated_at: [GlaceConnectionUpdated_at]
-  Name: [GlaceConnectionName]
+type GlazeGroupBy {
+  id: [GlazeConnectionId]
+  created_at: [GlazeConnectionCreated_at]
+  updated_at: [GlazeConnectionUpdated_at]
+  Name: [GlazeConnectionName]
+  Hide: [GlazeConnectionHide]
 }
 
-input GlaceInput {
-  Name: String
+input GlazeInput {
+  Name: String!
+  Hide: Boolean!
 }
 
 input InputID {
@@ -458,20 +448,18 @@ scalar JSON
 """The `Long` scalar type represents 52-bit integers"""
 scalar Long
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | ForgotPassword | ClayBody | ClayBodyConnection | ClayBodyAggregator | ClayBodyGroupBy | ClayBodyConnectionId | ClayBodyConnectionCreated_at | ClayBodyConnectionUpdated_at | ClayBodyConnectionName | createClayBodyPayload | updateClayBodyPayload | deleteClayBodyPayload | Contact | updateContactPayload | deleteContactPayload | Firing | FiringConnection | FiringAggregator | FiringGroupBy | FiringConnectionId | FiringConnectionCreated_at | FiringConnectionUpdated_at | FiringConnectionName | createFiringPayload | updateFiringPayload | deleteFiringPayload | Glace | GlaceConnection | GlaceAggregator | GlaceGroupBy | GlaceConnectionId | GlaceConnectionCreated_at | GlaceConnectionUpdated_at | GlaceConnectionName | createGlacePayload | updateGlacePayload | deleteGlacePayload | PieceType | PieceTypeConnection | PieceTypeAggregator | PieceTypeGroupBy | PieceTypeConnectionId | PieceTypeConnectionCreated_at | PieceTypeConnectionUpdated_at | PieceTypeConnectionName | createPieceTypePayload | updatePieceTypePayload | deletePieceTypePayload | Piece | PieceConnection | PieceAggregator | PieceGroupBy | PieceConnectionId | PieceConnectionCreated_at | PieceConnectionUpdated_at | PieceConnectionTitle | PieceConnectionDate | PieceConnectionMeta | createPiecePayload | updatePiecePayload | deletePiecePayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionDate | PostConnectionText | createPostPayload | updatePostPayload | deletePostPayload | SiteInformation | updateSiteInformationPayload | deleteSiteInformationPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | createFilePayload | updateFilePayload | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentMetaMeta
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | UsersPermissionsLoginPayload | ForgotPassword | ClayBody | ClayBodyConnection | ClayBodyAggregator | ClayBodyGroupBy | ClayBodyConnectionId | ClayBodyConnectionCreated_at | ClayBodyConnectionUpdated_at | ClayBodyConnectionName | createClayBodyPayload | updateClayBodyPayload | deleteClayBodyPayload | Firing | FiringConnection | FiringAggregator | FiringGroupBy | FiringConnectionId | FiringConnectionCreated_at | FiringConnectionUpdated_at | FiringConnectionName | createFiringPayload | updateFiringPayload | deleteFiringPayload | Glaze | GlazeConnection | GlazeAggregator | GlazeGroupBy | GlazeConnectionId | GlazeConnectionCreated_at | GlazeConnectionUpdated_at | GlazeConnectionName | GlazeConnectionHide | createGlazePayload | updateGlazePayload | deleteGlazePayload | PieceType | PieceTypeConnection | PieceTypeAggregator | PieceTypeGroupBy | PieceTypeConnectionId | PieceTypeConnectionCreated_at | PieceTypeConnectionUpdated_at | PieceTypeConnectionName | createPieceTypePayload | updatePieceTypePayload | deletePieceTypePayload | Piece | PieceConnection | PieceAggregator | PieceGroupBy | PieceConnectionId | PieceConnectionCreated_at | PieceConnectionUpdated_at | PieceConnectionTitle | PieceConnectionDate | PieceConnectionMeta | createPiecePayload | updatePiecePayload | deletePiecePayload | Post | PostConnection | PostAggregator | PostGroupBy | PostConnectionId | PostConnectionCreated_at | PostConnectionUpdated_at | PostConnectionTitle | PostConnectionDate | PostConnectionText | createPostPayload | updatePostPayload | deletePostPayload | SiteInformation | updateSiteInformationPayload | deleteSiteInformationPayload | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnectionId | UploadFileConnectionCreated_at | UploadFileConnectionUpdated_at | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionProvider_metadata | createFilePayload | updateFilePayload | deleteFilePayload | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnectionId | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsUser | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnectionId | UsersPermissionsUserConnectionCreated_at | UsersPermissionsUserConnectionUpdated_at | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | createUserPayload | updateUserPayload | deleteUserPayload | ComponentMetaMeta
 
 type Mutation {
   createClayBody(input: createClayBodyInput): createClayBodyPayload
   updateClayBody(input: updateClayBodyInput): updateClayBodyPayload
   deleteClayBody(input: deleteClayBodyInput): deleteClayBodyPayload
-  updateContact(input: updateContactInput): updateContactPayload
-  deleteContact: deleteContactPayload
   createFiring(input: createFiringInput): createFiringPayload
   updateFiring(input: updateFiringInput): updateFiringPayload
   deleteFiring(input: deleteFiringInput): deleteFiringPayload
-  createGlace(input: createGlaceInput): createGlacePayload
-  updateGlace(input: updateGlaceInput): updateGlacePayload
-  deleteGlace(input: deleteGlaceInput): deleteGlacePayload
+  createGlaze(input: createGlazeInput): createGlazePayload
+  updateGlaze(input: updateGlazeInput): updateGlazePayload
+  deleteGlaze(input: deleteGlazeInput): deleteGlazePayload
   createPieceType(input: createPieceTypeInput): createPieceTypePayload
   updatePieceType(input: updatePieceTypeInput): updatePieceTypePayload
   deletePieceType(input: deletePieceTypeInput): deletePieceTypePayload
@@ -697,13 +685,12 @@ type Query {
   clayBody(id: ID!): ClayBody
   clayBodies(sort: String, limit: Int, start: Int, where: JSON): [ClayBody]
   clayBodiesConnection(sort: String, limit: Int, start: Int, where: JSON): ClayBodyConnection
-  contact: Contact
   firing(id: ID!): Firing
   firings(sort: String, limit: Int, start: Int, where: JSON): [Firing]
   firingsConnection(sort: String, limit: Int, start: Int, where: JSON): FiringConnection
-  glace(id: ID!): Glace
-  glaces(sort: String, limit: Int, start: Int, where: JSON): [Glace]
-  glacesConnection(sort: String, limit: Int, start: Int, where: JSON): GlaceConnection
+  glaze(id: ID!): Glaze
+  glazes(sort: String, limit: Int, start: Int, where: JSON): [Glaze]
+  glazesConnection(sort: String, limit: Int, start: Int, where: JSON): GlazeConnection
   pieceType(id: ID!): PieceType
   pieceTypes(sort: String, limit: Int, start: Int, where: JSON): [PieceType]
   pieceTypesConnection(sort: String, limit: Int, start: Int, where: JSON): PieceTypeConnection
@@ -764,14 +751,6 @@ type updateClayBodyPayload {
   clayBody: ClayBody
 }
 
-input updateContactInput {
-  data: editContactInput
-}
-
-type updateContactPayload {
-  contact: Contact
-}
-
 input updateFileInput {
   where: InputID
   data: editFileInput
@@ -790,13 +769,13 @@ type updateFiringPayload {
   firing: Firing
 }
 
-input updateGlaceInput {
+input updateGlazeInput {
   where: InputID
-  data: editGlaceInput
+  data: editGlazeInput
 }
 
-type updateGlacePayload {
-  glace: Glace
+type updateGlazePayload {
+  glaze: Glaze
 }
 
 input updatePieceInput {

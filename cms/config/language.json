@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "defaultLocale": "en_us",
-  "modes": [
+  "_modes": [
     "query",
     "subdomain",
     "cookie",

@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Lifecycle callbacks for the `glace` model.
+ * Lifecycle callbacks for the `glaze` model.
  */
 
 module.exports = {

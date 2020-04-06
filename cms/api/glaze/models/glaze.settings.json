@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "connection": "default",
+  "collectionName": "glazes",
+  "info": {
+    "name": "Glaze"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "private": false,
+      "required": true
+    },
+    "Hide": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
