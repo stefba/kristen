@@ -1,5 +1,5 @@
 import React from "react"  
-import { StaticQuery, Link } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 
 const Bot = () => (  
     <StaticQuery
