@@ -18,7 +18,7 @@ const IndexPage = ({data}) => (
 
 export const query = graphql`
         query Posts {
-          allStrapiPiece {
+          allStrapiPiece(sort: {fields: date, order: DESC}) {
             edges {
               node {
                 title
@@ -39,10 +39,6 @@ export const query = graphql`
                   clay_body {
                     name
                   }
-                  process
-                  width
-                  height
-                  length
                 }
               }
             }
@@ -64,4 +60,8 @@ export default IndexPage
               }
             }
           }
+                  process
+                  width
+                  height
+                  length
         */

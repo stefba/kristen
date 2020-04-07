@@ -36,7 +36,7 @@ module.exports = {
     name: name,
     sizeFolder: sizeFolder,
     cacheFolder: cacheFolder,
-    sizes: [320, 640, 1280, 2560],
+    sizes: [320, 640, 960, 1280, 2560],
     hash: path => {
         return name(path).split(".")[0]
     },

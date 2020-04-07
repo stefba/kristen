@@ -1,6 +1,7 @@
 import React from "react"  
 
 const Pieces = ({ pieces }) => {
+    let i = 0;
     return (
         <div id="pieces">
         {pieces.map( piece => (
@@ -27,35 +28,78 @@ const iname = obj => {
     return ""
 }
 
+const dimensions = info => {
+    if (info == null || info.height == null) {
+        return ""
+    }
+    let str = info.height;
+    if (info.width != null) {
+        str += " " + info.width;
+    }
+    if (info.length != null) {
+        str += " " + info.length;
+    }
+    return str
+}
+
 const Piece = ({ piece }) => {
+    const i = piece.info;
     return (
-        <article>
+        <article className="piece">
         {piece.images.map( image => (
-            <img className="piece-image" key={image.id}  src={thumb(image.url, 1280)} />
+            <img className="piece-image" key={image.id}
+            srcset={
+                thumb(image.url, 640)+ " 640w, " +
+                thumb(image.url, 960)+ " 960w, " + 
+                thumb(image.url, 1280) + " 1280w"
+            }
+            src={thumb(image.url, 1280)} />
         ))}
-        <div>
+        <div className="piece-info">
             <dt>Title</dt>
             <dd>{piece.title}</dd>
             <dt>Date</dt>
             <dd>{piece.date}</dd>
+            
+            {i.piece_type != null ? (
+                <div>
+                    <dt>Type</dt>
+                    <dd>{i.piece_type.name}</dd>
+                </div>
+            ):(null)}
+            {i.clay_body != null ? (
+                <div>
+                    <dt>Clay body</dt>
+                    <dd>{i.clay_body.name}</dd>
+                </div>
+            ):(null)}
+            {i.firing != null ? (
+                <div>
+                    <dt>Firing</dt>
+                    <dd>{i.firing.name}</dd>
+                </div>
+            ):(null)}
+            {i.glaze != null ? (
+                <div>
+                    <dt>Glaze</dt>
+                    <dd>{i.glaze.name}</dd>
+                </div>
+            ):(null)}
+            {i.process != null ? (
+                <div>
+                    <dt>Process</dt>
+                    <dd>{i.process}</dd>
+                </div>
+            ):(null)}
 
-            <dt>Type</dt>
-            <dd>{iname(piece.info.piece_type)}</dd>
-            <dt>Clay body</dt>
-            <dd>{iname(piece.info.clay_body)}</dd>
-            <dt>Firing</dt>
-            <dd>{iname(piece.info.firing)}</dd>
-            <dt>Glaze</dt>
-            <dd>{iname(piece.info.glaze)}</dd>
-            <dt>Process</dt>
-            <dd>{piece.info.process}</dd>
-            <dt>Width</dt>
-            <dd>{piece.info.width}</dd>
-            <dt>Height</dt>
-            <dd>{piece.info.height}</dd>
-            <dt>Length</dt>
-            <dd>{piece.info.length}</dd>
-        </div>
+            {dimensions(i) != "" ? (
+                <div>
+                    <dt>Dimensions</dt>
+                    <dd>{dimensions(i)}</dd>
+                </div>
+            ):(null)}
+
+            </div>
         
         </article>
     );
