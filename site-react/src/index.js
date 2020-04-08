@@ -5,6 +5,8 @@ import { ApolloProvider } from "react-apollo";
 import aclient from "./utils/apolloClient";  
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import ReactDOMServer from 'react-dom/server';
+
 
 ReactDOM.hydrate(
   <React.StrictMode>
