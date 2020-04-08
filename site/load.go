@@ -50,17 +50,6 @@ func getSiteInfo() (*SiteInfo, error) {
 	return siteInfo, dec.Decode(&siteInfo)
 }
 
-func getPieces() (Pieces, error) {
-	resp, err := http.Get("http://localhost:1337/pieces")
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	pieces := []*Piece{}
-	dec := json.NewDecoder(io.Reader(resp.Body))
-	return pieces, dec.Decode(&pieces)
-}
-
 type Pieces []*Piece
 
 type Piece struct {
@@ -93,3 +82,16 @@ type GlazeProp struct {
 type Prop struct {
 	Name string `json: "name"`
 }
+
+func getPieces() (Pieces, error) {
+	resp, err := http.Get("http://localhost:1337/pieces")
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+	pieces := []*Piece{}
+	dec := json.NewDecoder(io.Reader(resp.Body))
+	return pieces, dec.Decode(&pieces)
+}
+
+
