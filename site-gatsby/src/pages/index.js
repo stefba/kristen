@@ -8,9 +8,7 @@ import Pieces from "../components/piece"
 const IndexPage = ({data}) => (  
  <Layout>
     <div>
-    {console.log(data)}
     <Pieces pieces={data.allStrapiPiece.edges} />
-    {/*<Posts posts={data.allStrapiPost.edges} />*/}
     </div>
   </Layout>
 )
