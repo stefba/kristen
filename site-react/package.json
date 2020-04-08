@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "apollo-boost": "^0.4.7",
+    "express": "^4.17.1",
     "graphql": "^15.0.0",
     "react": "^16.13.1",
     "react-apollo": "^3.1.4",
@@ -18,23 +19,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snapshot",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "_postbuild": "react-snap"
-  },
-  "reactSnap": {
-    "puppeteerArgs": [
-      "--no-sandbox",
-      "--disable-setuid-sandbox"
-    ],
-    "puppeteer": {
-      "waitFor": 500
-    },
-    "minifyHtml": {
-      "collapseWhitespace": false,
-      "removeComments": false
-    }
   },
   "eslintConfig": {
     "extends": "react-app"
