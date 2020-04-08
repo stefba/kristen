@@ -1,4 +1,4 @@
-import React from "react"  
+import React from "react"; 
 
 const Pieces = ({ pieces }) => {
     return (
@@ -10,7 +10,7 @@ const Pieces = ({ pieces }) => {
     );
 }
 
-const thumb = (url, size) => {
+const size = (url, size) => {
     const dir = "/uploads"
     return "/files/cache/" + size + url.substr(dir.length)
 }
@@ -35,13 +35,15 @@ const Piece = ({ piece }) => {
 const PieceImage = ({ piece }) => {
     return (
         piece.images.map( image => (
-            <img className="piece-image" key={image.id} alt={piece.title}
-            srcset={
-                thumb(image.url, 640)+ " 640w, " +
-                thumb(image.url, 960)+ " 960w, " + 
-                thumb(image.url, 1280) + " 1280w"
-            }
-            src={thumb(image.url, 1280)} />
+            <a href={size(image.url, 1280)}>
+                <img className="piece-image" key={image.id} alt={piece.title}
+                srcset={
+                    size(image.url, 640)+ " 640w, " +
+                    size(image.url, 960)+ " 960w, " + 
+                    size(image.url, 1280) + " 1280w"
+                }
+                src={size(image.url, 1280)} />
+            </a>
         ))
     );
 }
