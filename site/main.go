@@ -8,14 +8,14 @@ import (
 )
 
 func main() {
-	pieces, err := get()
+	pieces, err := getPieces()
 	for _, p := range pieces {
 		fmt.Println(p)
 	}
 	fmt.Println(err)
 }
 
-func get() (Pieces, error) {
+func getPieces() (Pieces, error) {
 	resp, err := http.Get("http://localhost:1337/pieces")
 	if err != nil {
 		return nil, err
