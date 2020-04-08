@@ -1,28 +1,40 @@
 package main
 
 import (
-	"io"
-	"fmt"
+	"log"
 	"net/http"
-	"encoding/json"
 )
 
+var Site *SiteData
+
 func main() {
-	pieces, err := getPieces()
-	for _, p := range pieces {
-		fmt.Println(p)
-	}
-	fmt.Println(err)
+	load()
+	http.HandleFunc("/", view)
+	http.HandleFunc("/load", reload)
+	http.ListenAndServe(":8999", nil)
 }
 
-func getPieces() (Pieces, error) {
-	resp, err := http.Get("http://localhost:1337/pieces")
+func view(w http.ResponseWriter, r *http.Request) {
+	load()
+	err := Site.tmpl.ExecuteTemplate(w, "front", Site)
 	if err != nil {
-		return nil, err
+		log.Println(err)
 	}
-	defer resp.Body.Close()
-	pieces := []*Piece{}
-	dec := json.NewDecoder(io.Reader(resp.Body))
-	return pieces, dec.Decode(&pieces)
 }
 
+func load() {
+	site, err := loadSite()
+	if err != nil {
+		log.Fatal(err)
+	}
+	Site = site
+}
+
+func reload(w http.ResponseWriter, r *http.Request) {
+	site, err := loadSite()
+	if err != nil {
+		http.Error(w, err.Error(), 500)
+		log.Println(err)
+	}
+	Site = site
+}
