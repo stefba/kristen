@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<title>Hooker</title>
+<style>
+    body {
+        font-size:3rem;
+        white-space:pre-wrap;
+        font-family:monospace;
+    }
+    .red {
+        background:red;
+    }
+    .green {
+        background:green;
+    }
+</style>
+{{if .Err}}
+Build failed!
+
+
+<span class="red">Error:</span>
+
+{{.Output}}
+{{else}}
+{{.Status}}
+
+
+{{if .Output}}<span class="green">Last build:</span>{{else}}Last build: {{end}}
+
+{{.Output}}
+{{end}}
