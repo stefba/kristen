@@ -50,7 +50,7 @@ func runBuild() {
 
 	H.Output = string(b)
 	H.Err = err
-	<-H.Queue
+	<- H.Queue
 
 	if len(H.Queue) > 0 {
 		log.Println("Queue not empty. Initiate new build.")
