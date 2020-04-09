@@ -1,3 +1,4 @@
-# Strapi application
+# CMS
 
-A quick description of your strapi application
+This is a Strapi installation. Check it out on strapi.io.
+
