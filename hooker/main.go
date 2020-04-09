@@ -41,7 +41,7 @@ func setupHooker() *Hooker {
 func runBuild() {
 	log.Println("New build run.")
 
-	cmd := exec.Command("yarn", "--cwd", "../site-gatsby", "build")
+	cmd := exec.Command("yarn", "--cwd", "../site", "build")
 	b, err := cmd.CombinedOutput()
 	if err != nil {
 		log.Println(err)
