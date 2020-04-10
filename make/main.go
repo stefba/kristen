@@ -18,7 +18,7 @@ var M *Make
 type Make struct {
 	Status string
 	Err    error
-	Output string
+	Out    string
 	Queue  chan int
 	Tmpl   *template.Template
 }
@@ -32,7 +32,7 @@ func setupMake() *Make {
 	return &Make{
 		Status: "",
 		Err:    nil,
-		Output: "",
+		Out:    "",
 		Queue:  make(chan int, 2),
 		Tmpl:   t,
 	}
@@ -42,15 +42,25 @@ func runBuild() {
 	log.Println("New build run.")
 
 	cmd := exec.Command("yarn", "--cwd", "../site", "build")
-	b, err := cmd.CombinedOutput()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
-		log.Println(err)
-		log.Println(string(b))
+		log.Println(string(out))
+	} else {
+		log.Println("Build completed without errors.")
 	}
 
-	M.Output = string(b)
+	M.Out = string(out)
 	M.Err = err
-	<- M.Queue
+
+	if err == nil {
+		err := copyToLive()
+		if err != nil {
+			M.Err = err
+			M.Out = err.Error()
+		}
+	}
+
+	<-M.Queue
 
 	if len(M.Queue) > 0 {
 		log.Println("Queue not empty. Initiate new build.")

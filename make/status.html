@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<title>Hooker</title>
+<title>Make</title>
 <style>
     body {
         font-size:3rem;
@@ -14,17 +14,17 @@
     }
 </style>
 {{if .Err}}
-Build failed!
+Last build failed. Starting a new one.
 
 
 <span class="red">Error:</span>
 
-{{.Output}}
+{{.Out}}
 {{else}}
 {{.Status}}
 
 
-{{if .Output}}<span class="green">Last build:</span>{{else}}Last build: {{end}}
+{{if .Out}}<span class="green">Last build:</span>{{else}}Last build: {{end}}
 
-{{.Output}}
+{{.Out}}
 {{end}}
