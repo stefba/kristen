@@ -8,14 +8,14 @@ import (
 )
 
 func main() {
-	H = setupHooker()
+	M = setupMake()
 	http.HandleFunc("/rl/", reload)
 	http.ListenAndServe(":8124", nil)
 }
 
-var H *Hooker
+var M *Make
 
-type Hooker struct {
+type Make struct {
 	Status string
 	Err    error
 	Output string
@@ -23,13 +23,13 @@ type Hooker struct {
 	Tmpl   *template.Template
 }
 
-func setupHooker() *Hooker {
-	t, err := template.ParseFiles("./hooker.html")
+func setupMake() *Make {
+	t, err := template.ParseFiles("./status.html")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	return &Hooker{
+	return &Make{
 		Status: "",
 		Err:    nil,
 		Output: "",
@@ -48,11 +48,11 @@ func runBuild() {
 		log.Println(string(b))
 	}
 
-	H.Output = string(b)
-	H.Err = err
-	<- H.Queue
+	M.Output = string(b)
+	M.Err = err
+	<- M.Queue
 
-	if len(H.Queue) > 0 {
+	if len(M.Queue) > 0 {
 		log.Println("Queue not empty. Initiate new build.")
 		go runBuild()
 	}
@@ -61,17 +61,17 @@ func runBuild() {
 func reload(w http.ResponseWriter, r *http.Request) {
 	log.Println("Request.")
 	select {
-	case H.Queue <- 1:
+	case M.Queue <- 1:
 		log.Println("Added 1 to queue.")
 	default:
 		log.Println("Queue full. Doing nothing.")
 	}
-	if len(H.Queue) <= 1 {
+	if len(M.Queue) <= 1 {
 		go runBuild()
-		H.Status = "New build iniated!"
-		H.Tmpl.Execute(w, H)
+		M.Status = "New build iniated!"
+		M.Tmpl.Execute(w, M)
 		return
 	}
-	H.Status = "Build already running. One in queue."
-	H.Tmpl.Execute(w, H)
+	M.Status = "Build already running. One in queue."
+	M.Tmpl.Execute(w, M)
 }
