@@ -9,6 +9,9 @@
   "attributes": {
     "piece": {
       "model": "piece"
+    },
+    "title": {
+      "type": "string"
     }
   }
 }

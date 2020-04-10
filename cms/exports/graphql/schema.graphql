@@ -73,10 +73,12 @@ input ComponentPieceInfoInput {
 type ComponentSelectionHighlight {
   id: ID!
   piece: Piece
+  title: String
 }
 
 input ComponentSelectionHighlightInput {
   piece: ID
+  title: String
 }
 
 input createClayBodyInput {
@@ -264,6 +266,7 @@ input editComponentPieceInfoInput {
 input editComponentSelectionHighlightInput {
   id: ID
   piece: ID
+  title: String
 }
 
 input editFileInput {
