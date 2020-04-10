@@ -321,6 +321,7 @@ input editSiteInformationInput {
   title: String
   description: String
   about: String
+  disclaimer: String
 }
 
 input editUserInput {
@@ -764,12 +765,14 @@ type SiteInformation {
   title: String
   description: String
   about: String
+  disclaimer: String
 }
 
 input SiteInformationInput {
   title: String
   description: String
   about: String
+  disclaimer: String
 }
 
 """A time string with format: HH:mm:ss.SSS"""

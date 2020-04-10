@@ -18,6 +18,9 @@
     },
     "about": {
       "type": "richtext"
+    },
+    "disclaimer": {
+      "type": "richtext"
     }
   }
 }
