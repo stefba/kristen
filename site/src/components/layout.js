@@ -10,7 +10,7 @@ import Seo from "./seo"
 const Layout = ({ children }) => {  
   return (
     <div>
-      <Seo />
+      <Seo title="" />
       <Top />
       <main>{children}</main>
       <Bot />

@@ -11,7 +11,7 @@ const Top = () => (
         }
      `}
       render={data => (
-  <h1 class="site-title">
+  <h1 className="site-title">
     <Link to="/">{data.strapiSiteInformation.title}</Link>
   </h1>
       )}

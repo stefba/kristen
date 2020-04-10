@@ -37,7 +37,7 @@ const PieceImage = ({ piece }) => {
         piece.images.map( image => (
             <a href={size(image.url, 1280)}>
                 <img className="piece-image" key={image.id} alt={piece.title}
-                srcset={
+                srcSet={
                     size(image.url, 640)+ " 640w, " +
                     size(image.url, 960)+ " 960w, " + 
                     size(image.url, 1280) + " 1280w"
