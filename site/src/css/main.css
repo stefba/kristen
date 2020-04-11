@@ -27,6 +27,15 @@ img {
     max-width:100%;
 }
 
+#selection {
+    display: flex;
+    justify-content: space-between;	
+}
+
+.selection-piece {
+    max-width:30rem;
+}
+
 .piece-info {
     margin-top:1rem;
 }

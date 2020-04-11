@@ -31,6 +31,7 @@ module.exports = {
               ],
               singleTypes: [
                   "site-information",
+                  "selection",
               ],
               queryLimit: 1000,
           },
